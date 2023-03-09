@@ -15,13 +15,11 @@ struct Banker {
     func work(for customer: Customer?) {
         guard let currentCustomer = customer else { return }
         
-        let startMessage = "\(currentCustomer.numberTicket)번 고객 \(department) 업무 시작"
-        let endMessage = "\(currentCustomer.numberTicket)번 고객 \(department) 업무 완료"
+        let startMessage = "\(currentCustomer.numberTicket)번 고객 \(currentCustomer.business.rawValue) 업무 시작"
+        let endMessage = "\(currentCustomer.numberTicket)번 고객 \(currentCustomer.business.rawValue) 업무 완료"
         
-  
         print(startMessage)
-        Thread.sleep(forTimeInterval: department.processTime)
+        Thread.sleep(forTimeInterval: currentCustomer.business.processTime)
         print(endMessage)
-   
     }
 }
