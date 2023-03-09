@@ -9,10 +9,10 @@ import Foundation
 
 // DispatchQueue 추가
 struct Banker {
-    let department: Business
-    let workQueue = DispatchQueue(label: "workQueue")
+//    let department: Business
+//    let workQueue = DispatchQueue(label: "workQueue")
     
-    func doWork(for customer: Customer?) {
+    func work(for customer: Customer?) {
         guard let currentCustomer = customer else { return }
         
         let startMessage = "\(currentCustomer.numberTicket)번 고객 \(department) 업무 시작"
