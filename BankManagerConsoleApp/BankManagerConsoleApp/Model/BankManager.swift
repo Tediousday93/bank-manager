@@ -25,10 +25,10 @@ final class BankManager {
     }
     
     @objc
-    func start(onComplete: @escaping () -> Void) {
+    func start(completionHandler: @escaping () -> Void) {
         printMenu()
         guard let userInput = readInput() else { return }
-        handleMenuInput(userInput, completionHandler: onComplete)
+        handleMenuInput(userInput, onCompleted: completionHandler)
     }
     
     private func printMenu() {
@@ -47,7 +47,7 @@ final class BankManager {
         return userInput
     }
     
-    private func handleMenuInput(_ userInput: String, completionHandler: @escaping () -> Void) {
+    private func handleMenuInput(_ userInput: String, onCompleted: @escaping () -> Void) {
         switch userInput {
         case "1":
             let totalCustomer = customerReceiver.receiveCustomer()
@@ -58,7 +58,7 @@ final class BankManager {
             }
         case "2":
             DispatchQueue.main.async {
-                completionHandler()
+                onCompleted()
             }
             return
         default:
@@ -67,5 +67,4 @@ final class BankManager {
             NotificationCenter.default.post(name: Notification.Name.bankClosed, object: nil)
         }
     }
-    
 }

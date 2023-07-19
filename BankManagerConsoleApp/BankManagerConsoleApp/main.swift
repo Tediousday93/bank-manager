@@ -22,5 +22,5 @@ func stopRunLoop() {
 }
 
 bankManager.addObserver()
-bankManager.start(onComplete: stopRunLoop)
+bankManager.start(completionHandler: stopRunLoop)
 CFRunLoopRun()
