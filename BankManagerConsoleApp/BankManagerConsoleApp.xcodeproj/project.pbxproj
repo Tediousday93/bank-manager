@@ -45,6 +45,7 @@
 		AD56814129C09B1D009923C9 /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08878DA829B6D6E100CD8F05 /* Customer.swift */; };
 		AD56814229C09B3D009923C9 /* Business.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C5E85529B9A5A40024AB60 /* Business.swift */; };
 		AD56814429C09C2B009923C9 /* MockQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD56814329C09C2A009923C9 /* MockQueue.swift */; };
+		AD89946B2A67C84200D848A5 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD89946A2A67C84200D848A5 /* Notification.swift */; };
 		C7694E7A259C3EC00053667F /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7694E79259C3EC00053667F /* main.swift */; };
 		C7D65D1B259C8190005510E0 /* BankManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D65D1A259C8190005510E0 /* BankManager.swift */; };
 /* End PBXBuildFile section */
@@ -81,6 +82,7 @@
 		AD56813729C04D26009923C9 /* BankTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankTest.swift; sourceTree = "<group>"; };
 		AD56813E29C06AAA009923C9 /* MockDepartment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDepartment.swift; sourceTree = "<group>"; };
 		AD56814329C09C2A009923C9 /* MockQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockQueue.swift; sourceTree = "<group>"; };
+		AD89946A2A67C84200D848A5 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		C7694E76259C3EC00053667F /* BankManagerConsoleApp */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = BankManagerConsoleApp; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7694E79259C3EC00053667F /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		C7D65D1A259C8190005510E0 /* BankManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BankManager.swift; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 		08878DAA29B6D6EE00CD8F05 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				AD89946A2A67C84200D848A5 /* Notification.swift */,
 				08878DAB29B6D84600CD8F05 /* Bank.swift */,
 				08878DA629B6D60600CD8F05 /* BankDepartment.swift */,
 				C7D65D1A259C8190005510E0 /* BankManager.swift */,
@@ -407,6 +410,7 @@
 			files = (
 				08878DA729B6D60600CD8F05 /* BankDepartment.swift in Sources */,
 				C7694E7A259C3EC00053667F /* main.swift in Sources */,
+				AD89946B2A67C84200D848A5 /* Notification.swift in Sources */,
 				AD37749E29B5ACDA00E68DA7 /* LinkedList.swift in Sources */,
 				08878DA929B6D6E100CD8F05 /* Customer.swift in Sources */,
 				08BCEDCE29C03AEC00A49289 /* CustomerReceiver.swift in Sources */,

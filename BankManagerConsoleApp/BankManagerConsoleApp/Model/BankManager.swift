@@ -4,9 +4,10 @@
 //  Copyright © yagom academy. All rights reserved.
 //
 
-struct BankManager {
+import Foundation
+
+final class BankManager {
     private let bank: Openable
-    private var isRunning: Bool = true
     private var customerReceiver: Receivable
     
     init(bank: Openable, customerReceiver: Receivable) {
@@ -14,12 +15,20 @@ struct BankManager {
         self.customerReceiver = customerReceiver
     }
     
-    mutating func start() {
-        while self.isRunning {
-            printMenu()
-            guard let userInput = readInput() else { return }
-            handleMenuInput(userInput)
-        }
+    func addObserver() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(start),
+            name: Notification.Name.bankClosed,
+            object: nil
+        )
+    }
+    
+    @objc
+    func start(onComplete: @escaping () -> Void) {
+        printMenu()
+        guard let userInput = readInput() else { return }
+        handleMenuInput(userInput, completionHandler: onComplete)
     }
     
     private func printMenu() {
@@ -38,19 +47,24 @@ struct BankManager {
         return userInput
     }
     
-    private mutating func handleMenuInput(_ userInput: String) {
+    private func handleMenuInput(_ userInput: String, completionHandler: @escaping () -> Void) {
         switch userInput {
         case "1":
             let totalCustomer = customerReceiver.receiveCustomer()
-            bank.open(totalCustomer: totalCustomer)
-            let report = bank.reportResult(totalCustomer: totalCustomer,
-                                           processTime: bank.processTime ?? 0)
-            print(report)
+            DispatchQueue.global().async { [weak self] in
+                guard let self else { return }
+                bank.open(totalCustomer: totalCustomer)
+                NotificationCenter.default.post(name: NSNotification.Name.bankClosed, object: nil)
+            }
         case "2":
-            isRunning = false
+            DispatchQueue.main.async {
+                completionHandler()
+            }
+            return
         default:
             let message = "잘못 입력하셨습니다."
             print(message)
+            NotificationCenter.default.post(name: Notification.Name.bankClosed, object: nil)
         }
     }
     

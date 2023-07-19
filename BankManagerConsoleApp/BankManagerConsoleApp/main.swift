@@ -4,6 +4,8 @@
 //  Copyright © yagom academy. All rights reserved.
 //
 
+import Foundation
+
 let customerQueue = CustomerQueue()
 let loanDepartment = BankDepartment(workableBankerCount: 1)
 let depositDepartment = BankDepartment(workableBankerCount: 2)
@@ -13,4 +15,12 @@ let bank = Bank(loanDepartment: loanDepartment,
 let customerReceiver = CustomerReceiver()
 var bankManager = BankManager(bank: bank, customerReceiver: customerReceiver)
 
-bankManager.start()
+let runLoop = CFRunLoopGetCurrent()
+
+func stopRunLoop() {
+    CFRunLoopStop(runLoop)
+}
+
+bankManager.addObserver()
+bankManager.start(onComplete: stopRunLoop)
+CFRunLoopRun()

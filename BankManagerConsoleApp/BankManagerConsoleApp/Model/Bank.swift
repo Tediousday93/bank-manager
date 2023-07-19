@@ -8,10 +8,7 @@
 import Foundation
 
 protocol Openable {
-    var processTime: CFAbsoluteTime? { get }
-    
     func open(totalCustomer: Int)
-    func reportResult(totalCustomer: Int, processTime: CFAbsoluteTime) -> String
 }
 
 final class Bank: Openable {
@@ -19,7 +16,6 @@ final class Bank: Openable {
     private let loanDepartment: Respondable
     private let depositDepartment: Respondable
     private let workGroup: DispatchGroup = DispatchGroup()
-    var processTime: CFAbsoluteTime?
     
     init(loanDepartment: Respondable, depositDepartment: Respondable, customerQueue: any CustomerQueueable) {
         self.loanDepartment = loanDepartment
@@ -30,8 +26,7 @@ final class Bank: Openable {
     func open(totalCustomer: Int) {
         setCustomerQueue(totalCustomer: totalCustomer)
         let processTime = ProcessTimer.calculateProcessTime(for: startWork)
-        
-        self.processTime = processTime
+        print(reportResult(totalCustomer: totalCustomer, processTime: processTime))
     }
     
     private func setCustomerQueue(totalCustomer: Int) {
@@ -55,7 +50,7 @@ final class Bank: Openable {
         workGroup.wait()
     }
     
-    func reportResult(totalCustomer: Int, processTime: CFAbsoluteTime) -> String {
+    private func reportResult(totalCustomer: Int, processTime: CFAbsoluteTime) -> String {
         let roundedProcessTime = round(processTime * 100) / 100
         let message = "업무가 마감되었습니다. 오늘 업무를 처리한 고객은 총 \(totalCustomer)명이며, 총 업무시간은 \(roundedProcessTime)초 입니다."
         
